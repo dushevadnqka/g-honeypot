@@ -1,5 +1,7 @@
-// db operations
-const mysqlPool = require("./mysqlPool").default
+require("dotenv").config();
+const mysql = require('mysql');
+
+const mysqlPoolInstance = mysql.createPool(process.env.MYSQL_DB_STRING);
 
 /**
  * Saves data in the MySQL database
@@ -14,7 +16,7 @@ const mysqlPool = require("./mysqlPool").default
 		'request_headers': item.request_headers
 	};
 
-	mysqlPool.getConnection((err, connection) => {
+	mysqlPoolInstance.getConnection((err, connection) => {
         if (err) return;
 		if (!connection) return;
 		connection.query('INSERT INTO request SET ?', request, (error) => {
@@ -25,7 +27,7 @@ const mysqlPool = require("./mysqlPool").default
 };
 
 const truncateTable = async () => {
-	mysqlPool.getConnection((err, connection) => {
+	mysqlPoolInstance.getConnection((err, connection) => {
         if (err) return;
 		if (!connection) return;
 		connection.query('TRUNCATE TABLE request', (error) => {

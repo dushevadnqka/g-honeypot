@@ -3,19 +3,21 @@ version: '3.1'
 services:
   db:
     image: mysql:5.7.29
-    command: mysqld --sql_mode=""
+    command: --init-file /data/application/init.sql
+    volumes:
+        - ./data/init.sql:/data/application/init.sql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
       MYSQL_DATABASE: ${DB_NAME}
     ports:
-      - 3306:3306
+      - ${DB_PORT}:${DB_PORT}
   app:
     depends_on:
       - db
     build: .
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - ${NODE_DOCKER_PORT}:${NODE_DOCKER_PORT}
     environment:
         DB_HOST: ${DB_HOST}
         DB_PORT: ${DB_PORT}

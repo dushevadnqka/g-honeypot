@@ -1,10 +1,9 @@
 {
   "name": "g-honeypot",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dbschema-build": "",
-    "start": "node dbschema-build && node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
