@@ -9,21 +9,18 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
     ports:
       - 3306:3306
-    # volumes:
-    #   - "./.data/db:/var/lib/mysql"
   app:
     depends_on:
       - db
     build: .
     restart: unless-stopped
     ports:
-      - ${NODE_DOCKER_PORT}:${NODE_DOCKER_PORT}
+      - 3000:3000
     environment:
         DB_HOST: ${DB_HOST}
         DB_PORT: ${DB_PORT}
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
         DB_PASS: ${DB_PASS}
-        DATABASE_URL: ${DATABASE_URL}
     stdin_open: true
     tty: true
