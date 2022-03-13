@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS db_name_hp;
+
+USE db_name_hp;
+
+CREATE TABLE IF NOT EXISTS request (
+    request_id INT AUTO_INCREMENT PRIMARY KEY,
+    ip VARCHAR(255) NULL,
+    service VARCHAR(255) NULL,
+    request VARCHAR(255) NULL,
+    request_headers VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB;
