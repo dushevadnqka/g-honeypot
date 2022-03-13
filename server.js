@@ -8,7 +8,7 @@
  var debug = require('debug')('g-honeypot:server');
  var http = require('http');
  require("dotenv").config();
- 
+
  /**
   * Get port from environment and store in Express.
   */
